@@ -45,9 +45,8 @@
     #
     # send login request
     #
-    Invoke-WebRequest -Uri $uri -Method Post -Body (ConvertTo-Json $parameters) -ContentType "application/json" -SessionVariable webession
+    $result = Invoke-WebRequest -Uri $uri -Method Post -Body (ConvertTo-Json $parameters) -ContentType "application/json" -SessionVariable webession
     # Set-ItemProperty -InputObject $global:ZscalerEnvironment -Name webession -Value $websession
-    write-host "webession is $webession"
     $global:ZscalerEnvironment.webession = $webession
 }
 
