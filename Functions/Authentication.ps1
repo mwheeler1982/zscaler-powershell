@@ -18,7 +18,7 @@
     $now = [math]::Truncate($instant * 1000)
     $length = ([string]$now).Length
     $n = ([string]$now).Substring($length - 6)
-    $r = ([string]($n -shr 1)).PadLeft(6)
+    $r = ([string]($n -shr 1)).PadLeft(6, 0)
 
     #
     # construct the secret
@@ -46,7 +46,6 @@
     # send login request
     #
     $result = Invoke-WebRequest -Uri $uri -Method Post -Body (ConvertTo-Json $parameters) -ContentType "application/json" -SessionVariable webession
-    # Set-ItemProperty -InputObject $global:ZscalerEnvironment -Name webession -Value $websession
     $global:ZscalerEnvironment.webession = $webession
 }
 
@@ -66,6 +65,4 @@ function Set-ZscalerEnvironment
         apikey = $apikey
         webession = $webession
     }
-
-    # $global:ZscalerEnvironment = New-Object psobject -Property $properties
 }
