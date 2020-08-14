@@ -28,13 +28,15 @@
         [char[]]$n | ForEach-Object {
             $secret += $apikey.Substring([string]$_, 1)
         }
+
+        if ($r.Length -lt 6) {$r = $r.PadLeft(6, 0) }
         [char[]]$r | ForEach-Object {
             $position = ([int]([string]$_)) + 2
             $secret += $apikey.Substring($position, 1)
         }
     }
     catch {
-        write-host "r is $r"
+        write-host "r is .$r."
         write-host "position is $position"
         write-host "secret is $secret"
         write-host "var is $_"

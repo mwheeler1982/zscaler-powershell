@@ -1,4 +1,4 @@
-function Get-ZscalerSSLExemptedUrls
+function Get-ZscalerSSLExemptedUrl
 {
     # construct the URI
     $uri = ("https://admin.{0}.net/api/v1/sslSettings/exemptedUrls" -f $global:ZscalerEnvironment.cloud)
@@ -7,7 +7,7 @@ function Get-ZscalerSSLExemptedUrls
     return Invoke-RestMethod -uri $uri -Method Get -WebSession $global:ZscalerEnvironment.webession -ContentType 'application/json'
 }
 
-function Set-ZscalerSSLExemptedUrls
+function Set-ZscalerSSLExemptedUrl
 {
     param(
         [Parameter(Mandatory=$true)][string]$action,

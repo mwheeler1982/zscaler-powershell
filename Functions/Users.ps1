@@ -1,4 +1,4 @@
-Function Get-ZscalerUsers
+Function Get-ZscalerUser
 {
     # parameters
     param(
