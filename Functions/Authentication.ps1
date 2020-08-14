@@ -18,7 +18,7 @@
     $now = [math]::Truncate($instant * 1000)
     $length = ([string]$now).Length
     $n = ([string]$now).Substring($length - 6)
-    $r = ([string]($n -shr 1)).PadLeft(6, 0)
+    $r = ([string]($n -shr 1)).PadLeft(6, '0')
 
     #
     # construct the secret
@@ -29,13 +29,14 @@
             $secret += $apikey.Substring([string]$_, 1)
         }
 
-        if ($r.Length -lt 6) {$r = $r.PadLeft(6, 0) }
+        if ($r.Length -lt 6) {$r = $r.PadLeft(6, '0') ; write-host "WARNING: Had to fix padding. Please report this issue to the developer." }
         [char[]]$r | ForEach-Object {
             $position = ([int]([string]$_)) + 2
             $secret += $apikey.Substring($position, 1)
         }
     }
     catch {
+        Write-Host "Exception occurred while generating the API Secret. Please report this issue to the developer."
         write-host "r is .$r."
         write-host "position is $position"
         write-host "secret is $secret"
@@ -93,3 +94,4 @@ function Get-ZscalerSessionCookie
     $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
     return $Global:ZscalerEnvironment.webession.Cookies.GetCookies($uri)[0].ToString()
 }
+
