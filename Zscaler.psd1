@@ -9,6 +9,7 @@
         '.\Functions\Locations.ps1',
         '.\Functions\Security.ps1',
         '.\Functions\SSL.ps1',
+        '.\Functions\TrafficForwarding.ps1',
         '.\Functions\URLs.ps1',
         '.\Functions\Users.ps1'    
     )
