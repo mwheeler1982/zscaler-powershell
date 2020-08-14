@@ -24,13 +24,22 @@
     # construct the secret
     #
     $secret = ""
-    [char[]]$n | ForEach-Object {
-        $secret += $apikey.Substring([string]$_, 1)
+    try {
+        [char[]]$n | ForEach-Object {
+            $secret += $apikey.Substring([string]$_, 1)
+        }
+        [char[]]$r | ForEach-Object {
+            $position = ([int]([string]$_)) + 2
+            $secret += $apikey.Substring($position, 1)
+        }
     }
-    [char[]]$r | ForEach-Object {
-        $position = ([int]([string]$_)) + 2
-        $secret += $apikey.Substring($position, 1)
+    catch {
+        write-host "r is $r"
+        write-host "position is $position"
+        write-host "secret is $secret"
+        write-host "var is $_"
     }
+    
 
     #
     # construct our parameters variable
@@ -45,8 +54,18 @@
     #
     # send login request
     #
-    $result = Invoke-WebRequest -Uri $uri -Method Post -Body (ConvertTo-Json $parameters) -ContentType "application/json" -SessionVariable webession
+    $result = Invoke-RestMethod -Uri $uri -Method Post -Body (ConvertTo-Json $parameters) -ContentType "application/json" -SessionVariable webession
     $global:ZscalerEnvironment.webession = $webession
+}
+
+function Remove-ZscalerAPISession
+{
+    # set the URI
+    $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
+
+    # log out of the authenticated session
+    $result = Invoke-RestMethod -Uri $uri -Method Delete -WebSession $global:ZscalerEnvironment.webession -ContentType 'application/json'
+    return
 }
 
 function Set-ZscalerEnvironment
@@ -65,4 +84,10 @@ function Set-ZscalerEnvironment
         apikey = $apikey
         webession = $webession
     }
+}
+
+function Get-ZscalerSessionCookie
+{
+    $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
+    return $Global:ZscalerEnvironment.webession.Cookies.GetCookies($uri)[0].ToString()
 }

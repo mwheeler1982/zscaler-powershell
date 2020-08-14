@@ -4,7 +4,8 @@
     NestedModules = @(
         '.\Functions\Authentication.ps1',
         '.\Functions\Users.ps1',
-        '.\Functions\SSL.ps1'
+        '.\Functions\SSL.ps1',
+        '.\Functions\Activation.ps1'
     )
     FunctionsToExport = @('*')
 }
