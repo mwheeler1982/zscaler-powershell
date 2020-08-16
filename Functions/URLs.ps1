@@ -109,3 +109,38 @@ function Remove-ZscalerUrlFilteringRule
     # return the result
     return Invoke-RestMethod -uri $request.Uri -Method Delete -WebSession $global:ZscalerEnvironment.webession -Body $parameters -ContentType 'application/json'
 }
+
+function Update-ZscalerUrlCategory
+{
+    param(
+        [Parameter(Mandatory=$true)][string]$id,
+        [Parameter(Mandatory=$true)][string]$action,
+        [Parameter(Mandatory=$true)][string]$configuredName,
+        [Parameter(Mandatory=$true)][string[]]$urls
+    )
+
+    # construct the URI
+    $uri = ("https://admin.{0}.net/api/v1/urlCategories" -f $global:ZscalerEnvironment.cloud)
+
+    # construct the URL parameter array
+    $parameters = @{}
+    $parameters.Add("urls", $urls)
+    $parameters.Add("id", $id)
+    $parameters.Add("configuredName", $configuredName)
+
+    # make sure they specify either add or remove
+    switch -CaseSensitive ($action)
+    {
+        'add' {$urlAction = "ADD_TO_LIST"; Break}
+        'remove' {$urlAction = "REMOVE_FROM_LIST"; Break}
+        default {
+            throw "Action must be either Add or Remove"
+        }
+    }
+
+    # add the type of request to the URI and the ID
+    $uri = ("{0}/{1}?action={2}" -f ($uri, $id, $urlAction))
+
+    # send the request 
+    return Invoke-RestMethod -uri $uri -Method Put -WebSession $global:ZscalerEnvironment.webession -Body (ConvertTo-Json $parameters) -ContentType 'application/json'
+}
