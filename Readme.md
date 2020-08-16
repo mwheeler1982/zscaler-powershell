@@ -29,7 +29,7 @@ This module is intended to be a starting point when interacting with the Zscaler
 ##### Getting an API session
 - To authenticate to the Zscaler API, run `Get-ZscalerAPISession` after having successfully created your environment in the previous step. If there is no output to this command, it was successful. This command calls a PUT method on the /authenticatedSession REST endpoint: https://help.zscaler.com/zia/api#/API%20Authentication/postAuthenticatedSessionInfo 
 
-### Ending API Session
+##### Ending API Session
 - To remove your authentication token and "log out" of the API session, run `Remove-ZscalerAPISession`. This command calls a DELETE method on the /authenticatedSession REST endpoint https://help.zscaler.com/zia/api#/API Authentication/setAuthenticatedSessionInfo
 
 ### Activating Changes
@@ -43,8 +43,33 @@ This module is intended to be a starting point when interacting with the Zscaler
 
 ### Location Management
 
-
-
+### Full list of commands
+```
+Add-ZscalerUrlFilteringRule
+Get-ZscalerActivationStatus
+Get-ZscalerAPISession
+Get-ZscalerBlacklistUrl
+Get-ZscalerDepartment
+Get-ZscalerEnvironmentFromFile
+Get-ZscalerGreTunnelInfo
+Get-ZscalerGroup
+Get-ZscalerLocation
+Get-ZscalerSessionCookie
+Get-ZscalerSSLExemptedUrl
+Get-ZscalerSublocation
+Get-ZscalerUrlCategory
+Get-ZscalerUrlFilteringRule
+Get-ZscalerUrlLookup
+Get-ZscalerUser
+Get-ZscalerWhitelistUrl
+Remove-ZscalerAPISession
+Remove-ZscalerUrlFilteringRule
+Set-ZscalerActivateChanges
+Set-ZscalerEnvironment
+Set-ZscalerSSLExemptedUrl
+Set-ZscalerWhitelistUrl
+Update-ZscalerUrlCategory
+```
 
 
 
