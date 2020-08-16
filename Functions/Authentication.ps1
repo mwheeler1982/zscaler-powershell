@@ -51,7 +51,7 @@
         apiKey = $secret
         username = $username
         password = $password
-        timestamp = $now
+        timestamp = $now.ToString()
     }
 
     #
@@ -63,12 +63,26 @@
 
 function Remove-ZscalerAPISession
 {
+
     # set the URI
     $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
 
     # log out of the authenticated session
     $result = Invoke-RestMethod -Uri $uri -Method Delete -WebSession $global:ZscalerEnvironment.webession -ContentType 'application/json'
     return
+}
+
+function Get-ZscalerEnvironmentFromFile
+{
+    param(
+        [Parameter(Mandatory=$true)][string]$FileName
+    )
+
+    # read in the configuration file
+    $environment = ConvertFrom-StringData -StringData (Get-Content -path $FileName -Raw)
+
+    # set the environment
+    Set-ZscalerEnvironment -cloud $environment.cloud -apikey $environment.apikey -username $environment.username -password $environment.password
 }
 
 function Set-ZscalerEnvironment
