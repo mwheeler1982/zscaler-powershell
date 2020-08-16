@@ -14,7 +14,7 @@ This module is intended to be a starting point when interacting with the Zscaler
 - To instantiate your environment, you can use the `Get-ZscalerEnvironmentFromFile` command like this:
 ##### Windows
 ```
-    Get-ZscalerEnvironmentFromFile .\Zscaler\config
+    Get-ZscalerEnvironmentFromFile .\.Zscaler\config
 ``` 
 
 ##### Mac OSX
