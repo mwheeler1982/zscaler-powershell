@@ -45,30 +45,342 @@ This module is intended to be a starting point when interacting with the Zscaler
 
 ### Full list of commands
 ```
-Add-ZscalerUrlFilteringRule
-Get-ZscalerActivationStatus
-Get-ZscalerAPISession
-Get-ZscalerBlacklistUrl
-Get-ZscalerDepartment
-Get-ZscalerEnvironmentFromFile
-Get-ZscalerGreTunnelInfo
-Get-ZscalerGroup
-Get-ZscalerLocation
-Get-ZscalerSessionCookie
-Get-ZscalerSSLExemptedUrl
-Get-ZscalerSublocation
-Get-ZscalerUrlCategory
-Get-ZscalerUrlFilteringRule
-Get-ZscalerUrlLookup
-Get-ZscalerUser
-Get-ZscalerWhitelistUrl
-Remove-ZscalerAPISession
-Remove-ZscalerUrlFilteringRule
-Set-ZscalerActivateChanges
-Set-ZscalerEnvironment
-Set-ZscalerSSLExemptedUrl
-Set-ZscalerWhitelistUrl
-Update-ZscalerUrlCategory
+
+NAME
+    Add-ZscalerUrlFilteringRule
+    
+SYNTAX
+    Add-ZscalerUrlFilteringRule [-name] <string> [-order] <int> [[-rank] <int>] [-state] <string> [-action] <string> [-protocols] <string[]> [-requestMethods] <string[]> [-urlCategories] <string[]> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerActivationStatus
+    
+SYNTAX
+    Get-ZscalerActivationStatus 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerAPISession
+    
+SYNTAX
+    Get-ZscalerAPISession 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerBlacklistUrl
+    
+SYNTAX
+    Get-ZscalerBlacklistUrl 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerDepartment
+    
+SYNTAX
+    Get-ZscalerDepartment [[-id] <string>] [[-search] <string>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerEnvironmentFromFile
+    
+SYNTAX
+    Get-ZscalerEnvironmentFromFile [-FileName] <string> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerGreTunnelInfo
+    
+SYNTAX
+    Get-ZscalerGreTunnelInfo 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerGroup
+    
+SYNTAX
+    Get-ZscalerGroup [[-id] <string>] [[-search] <string>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerLocation
+    
+SYNTAX
+    Get-ZscalerLocation [[-id] <string>] [[-search] <string>] [[-brief] <bool>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerSessionCookie
+    
+SYNTAX
+    Get-ZscalerSessionCookie 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerSSLExemptedUrl
+    
+SYNTAX
+    Get-ZscalerSSLExemptedUrl 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerSublocation
+    
+SYNTAX
+    Get-ZscalerSublocation [-id] <string> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerUrlCategory
+    
+SYNTAX
+    Get-ZscalerUrlCategory [[-customOnly] <bool>] [[-id] <string>] [[-brief] <bool>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerUrlFilteringRule
+    
+SYNTAX
+    Get-ZscalerUrlFilteringRule [[-id] <string>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerUrlLookup
+    
+SYNTAX
+    Get-ZscalerUrlLookup [[-domains] <string[]>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerUser
+    
+SYNTAX
+    Get-ZscalerUser [[-id] <string>] [[-name] <string>] [[-dept] <string>] [[-group] <string>] [[-page] <int>] [[-pageSize] <int>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Get-ZscalerWhitelistUrl
+    
+SYNTAX
+    Get-ZscalerWhitelistUrl 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Remove-ZscalerAPISession
+    
+SYNTAX
+    Remove-ZscalerAPISession 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Remove-ZscalerUrlFilteringRule
+    
+SYNTAX
+    Remove-ZscalerUrlFilteringRule [-id] <string> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Set-ZscalerActivateChanges
+    
+SYNTAX
+    Set-ZscalerActivateChanges 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Set-ZscalerEnvironment
+    
+SYNTAX
+    Set-ZscalerEnvironment [[-cloud] <string>] [[-apikey] <string>] [[-username] <string>] [[-password] <string>] 
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Set-ZscalerSSLExemptedUrl
+    
+SYNTAX
+    Set-ZscalerSSLExemptedUrl [-action] <string> [-urls] <string[]> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Set-ZscalerWhitelistUrl
+    
+SYNTAX
+    Set-ZscalerWhitelistUrl [[-force] <bool>] [[-urls] <string[]>] [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
+
+NAME
+    Update-ZscalerUrlCategory
+    
+SYNTAX
+    Update-ZscalerUrlCategory [-id] <string> [-action] <string> [-configuredName] <string> [-urls] <string[]> [<CommonParameters>]
+    
+
+ALIASES
+    None
+    
+
+REMARKS
+    None
 ```
 
 
