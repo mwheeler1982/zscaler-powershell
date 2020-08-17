@@ -64,19 +64,19 @@ Get-ZscalerActivationStatus [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerActivationStatus
-```
+
 status  
 ------  
 ACTIVE
-
+```
 **EXAMPLE 2**
 ```powershell
 Get-ZscalerActivationStatus
-```
+
 status  
 ------  
 PENDING
-
+```
 ## Get-ZscalerAPISession
 ### Synopsis
 Logs into the Zscaler API and gets an active session
@@ -127,28 +127,28 @@ Get-ZscalerDepartment [[-id] <String>] [[-search] <String>] [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerDepartment
-```
+
 id          name               comments  
 --          ----               --------  
 11211611    IT                 IT  
 11172659    Service Admin
-
+```
 **EXAMPLE 2**
 ```powershell
 Get-ZscalerDepartment -id 11211611
-```
+
 id          name    comments  
 --          ----    --------  
 11211611    IT      IT
-
+```
 **EXAMPLE 3**
 ```powershell
 Get-ZscalerDepartment -search Admin
-```
+
 isNonEditable       id          name  
 -------------       --          ----  
 True           11172659    Service Admin
-
+```
 ## Get-ZscalerEnvironmentFromFile
 ### Synopsis
 Reads Zscaler API Environment information from a file, then feeds to Set-ZscalerEnvironment
@@ -203,29 +203,29 @@ Get-ZscalerGroup [[-id] <String>] [[-search] <String>] [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerGroup
-```
+
 id          name  
 --          ----  
 11211613    IT  
 11172658    Service Admin  
 11221783    Splunk\_Users
-
+```
 **EXAMPLE 2**
 ```powershell
 Get-ZscalerGroup -id 11221783
-```
+
 id          name  
 --          ----  
 11221783    Splunk\_Users
-
+```
 **EXAMPLE 3**
 ```powershell
 Get-ZscalerGroup -search Splunk
-```
+
 id          name  
 --          ----  
 11221783    Splunk\_Users
-
+```
 ## Get-ZscalerLocation
 ### Synopsis
 Gets information on ZIA configured locations
@@ -249,7 +249,7 @@ Get-ZscalerLocation [[-id] <String>] [[-search] <String>] [[-brief] <Boolean>] [
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerLocation
-```
+
 id                            : 11549625  
 name                          : Network 1  
 ipAddresses                   : \{1.1.1.1\}  
@@ -269,21 +269,21 @@ zappSslScanEnabled            : True
 urrogateRefreshTimeInMinutes : 0  
 staticLocationGroups          : \{@\{id=11336000; name=Texas\}\}  
 dynamiclocationGroups         : \{\}
-
+```
 **EXAMPLE 2**
 ```powershell
 Get-ZscalerLocation -brief $true
-```
+
 id          name  
 --          ----  
 -3          Road Warrior  
 11549625    Network 1  
 11183521    Lab 1
-
+```
 **EXAMPLE 3**
 ```powershell
 Get-ZscalerLocation -id 11183521
-```
+
 id                            : 11183521  
 name                          : Lab 1  
 country                       : UNITED\_STATES  
@@ -295,7 +295,7 @@ zappSslScanEnabled            : True
 urrogateRefreshTimeInMinutes : 0  
 staticLocationGroups          : \{@\{id=11336000; name=Texas\}\}  
 dynamiclocationGroups         : \{\}  
-  
+```  
 parameters
 
 ## Get-ZscalerSessionCookie
@@ -315,9 +315,9 @@ Get-ZscalerSessionCookie [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerSessionCookie
-```
-JSESSIONID=1E62Z35CE94DC34A801DC822D6CEEC1R
 
+JSESSIONID=1E62Z35CE94DC34A801DC822D6CEEC1R
+```
 ## Get-ZscalerSSLExemptedUrl
 ### Syntax
 ```powershell
@@ -347,7 +347,7 @@ Get-ZscalerSublocation [-id] <String> [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Get-ZscalerSublocation -id 11183521
-```
+
 id                            : 13233859  
 name                          : Sublocation 1  
 parentId                      : 11183521  
@@ -369,7 +369,7 @@ sslScanEnabled                : True
 zappSslScanEnabled            : True  
 otherSubLocation              : True  
 surrogateRefreshTimeInMinutes : 0
-
+```
 ## Get-ZscalerUrlCategory
 ### Syntax
 ```powershell
@@ -479,11 +479,11 @@ Set-ZscalerActivateChanges [<CommonParameters>]
 **EXAMPLE 1**
 ```powershell
 Set-ZscalerActivateChanges
-```
+
 status  
 ------  
 ACTIVE
-
+```
 ## Set-ZscalerEnvironment
 ### Synopsis
 Sets the variables required to authenticate to the Zscaler API
