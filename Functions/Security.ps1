@@ -1,5 +1,17 @@
 function Get-ZscalerWhitelistUrl
 {
+    <#
+    .SYNOPSIS
+    Retrieves the list of Whitelisted URLs
+
+    .EXAMPLE
+    PS> Get-ZscalerWhitelistUrl
+
+    whitelistUrls
+    -------------
+    {bbc.com, slashdot.org}
+
+    #>
     # set the URI
     $request = [System.UriBuilder]("https://admin.{0}.net/api/v1/security" -f $global:ZscalerEnvironment.cloud)
 
@@ -9,6 +21,31 @@ function Get-ZscalerWhitelistUrl
 
 function Set-ZscalerWhitelistUrl
 {
+    <#
+    .SYNOPSIS
+    Sets the list of Whitelisted URLs
+
+    .PARAMETER urls
+    Array of URLs to set the whitelist. This will overwrite the existing whitelist with the new values.
+
+    .PARAMETER force
+    Submitting an empty list will wipe out the Whitelist. Use this option to force that operation to happen, otherwise an error will be thrown.
+
+    .EXAMPLE
+    PS> Set-ZscalerWhitelistUrl -urls @("bbc.com", "slashdot.org")
+
+    whitelistUrls
+    -------------
+    {bbc.com, slashdot.org}
+
+    .EXAMPLE
+    PS> Set-ZscalerWhitelistUrl
+    Submitting an empty list of URLs will completely erase the whitelist. Please use the -force \True option if this is what you really want to do.
+
+    .EXAMPLE
+    PS> Set-ZscalerWhitelistUrl -force $true
+
+    #>
     # parameters
     param(
         [Parameter(Mandatory=$false)][bool]$force,
@@ -32,6 +69,19 @@ function Set-ZscalerWhitelistUrl
 
 function Get-ZscalerBlacklistUrl
 {
+    <#
+    .SYNOPSIS
+    Retrieves the list of Blacklisted URLs
+
+    .EXAMPLE
+    PS> Get-ZscalerBlacklistUrl
+
+    blacklistUrls
+    -------------
+    {bbc.com, slashdot.org}
+
+    #>
+    
     # set the URI
     $request = [System.UriBuilder]("https://admin.{0}.net/api/v1/security/advanced" -f $global:ZscalerEnvironment.cloud)
 

@@ -1,5 +1,15 @@
 ﻿function Get-ZscalerAPISession
 {
+    <#
+    .SYNOPSIS
+
+    Logs into the Zscaler API and gets an active session
+
+    .EXAMPLE
+
+    PS> Get-ZscalerAPISession
+    #>
+
     $cloud = $global:ZscalerEnvironment.cloud
     $apikey = $global:ZscalerEnvironment.apikey
     $username = $global:ZscalerEnvironment.username
@@ -63,6 +73,15 @@
 
 function Remove-ZscalerAPISession
 {
+    <#
+    .SYNOPSIS
+
+    Logs out of the Zscaler API session
+
+    .EXAMPLE
+
+    PS> Remove-ZscalerAPISession
+    #>
 
     # set the URI
     $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
@@ -74,6 +93,24 @@ function Remove-ZscalerAPISession
 
 function Get-ZscalerEnvironmentFromFile
 {
+    <#
+    .SYNOPSIS
+
+    Reads Zscaler API Environment information from a file, then feeds to Set-ZscalerEnvironment
+
+    .EXAMPLE
+
+    PS> Get-ZscalerEnvironmentFromFile -FileName .\.Zscaler\config
+    
+    .PARAMETER FileName
+
+    File name containing the Zsclaer API environment variables. Example file looks like this:
+    cloud = zscalerthree
+    apikey = ABCDEFGHIJ
+    username = admin@123.zscalerthree.net
+    password = P4ssw0rd
+
+    #>
     param(
         [Parameter(Mandatory=$true)][string]$FileName
     )
@@ -87,11 +124,32 @@ function Get-ZscalerEnvironmentFromFile
 
 function Set-ZscalerEnvironment
 {
+    <#
+    .SYNOPSIS
+
+    Sets the variables required to authenticate to the Zscaler API
+
+    .EXAMPLE 
+
+    PS> Set-ZscalerEnvironment -cloud zscalerthree -apikey ABCDEFGHIJ -username admin@123.zscalerthree.net -password P4ssw0rd
+
+    .PARAMETER cloud
+    The Zscaler cloud you are logging into. Example: zscalerthree
+
+    .PARAMETER apikey
+    Your Zscaler Cloud API Key
+
+    .PARAMETER username
+    Your Zscaler API username
+
+    .PARAMETER password
+    Your Zscaler API password
+    #>
     param(
-        [string]$cloud,
-        [string]$apikey,
-        [string]$username,
-        [string]$password
+        [Parameter(Mandatory=$true)][string]$cloud,
+        [Parameter(Mandatory=$true)][string]$apikey,
+        [Parameter(Mandatory=$true)][string]$username,
+        [Parameter(Mandatory=$true)][string]$password
     )
 
     $global:ZscalerEnvironment = [PSCustomObject]@{
@@ -105,6 +163,16 @@ function Set-ZscalerEnvironment
 
 function Get-ZscalerSessionCookie
 {
+    <#
+    .SYNOPSIS
+
+    Outputs the Zscaler API session cookie value if one exists
+
+    .EXAMPLE
+
+    PS> Get-ZscalerSessionCookie
+    JSESSIONID=1E62Z35CE94DC34A801DC822D6CEEC1R
+    #>
     $uri = ("https://admin.{0}.net/api/v1/authenticatedSession" -f $global:ZscalerEnvironment.cloud)
     return $Global:ZscalerEnvironment.webession.Cookies.GetCookies($uri)[0].ToString()
 }

@@ -1,5 +1,37 @@
 function Get-ZscalerGroup
 {
+    <#
+    .SYNOPSIS
+    Gets information about Departments configured within ZIA
+
+    .PARAMETER id
+    Retrieve a department by its department ID
+
+    .PARAMETER search
+    Search within the "name" and "comments" attributes for the search term. This is a case-insensitive partial string match search.
+
+    .EXAMPLE
+    PS> Get-ZscalerGroup
+    
+    id          name
+    --          ----
+    11211613    IT
+    11172658    Service Admin
+    11221783    Splunk_Users
+
+    .EXAMPLE
+    PS> Get-ZscalerGroup -id 11221783
+    id          name
+    --          ----
+    11221783    Splunk_Users
+
+    .EXAMPLE
+    PS> Get-ZscalerGroup -search Splunk
+    id          name
+    --          ----
+    11221783    Splunk_Users
+    #>
+
     # parameters
     param(
         [Parameter(Mandatory=$false)][string]$id,

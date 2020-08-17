@@ -1,5 +1,31 @@
 function Get-ZscalerSSLExemptedUrl
 {
+    <#
+    .SYNOPSIS
+    Retrieves a list of SSL (and other policy) exempted URLs
+
+    .EXAMPLE
+    PS> Get-ZscalerSSLExemptedUrl
+
+    urls
+    ----
+    {ax.itunes.com, .okta.com, .albert.apple.com...}
+
+    .EXAMPLE
+    PS> (Get-ZscalerSSLExemptedUrl).urls
+
+    .okta.com
+    .phobos.apple.com
+    .securemetrics.apple.com
+    albert.apple.com
+    imap.gmail.com
+    itunes.apple.com
+    mail.cypressmaf.com
+    mzstatic.com
+    phobos.apple.com
+    securemetrics.apple.com
+    smtp.gmail.com
+    #>
     # construct the URI
     $uri = ("https://admin.{0}.net/api/v1/sslSettings/exemptedUrls" -f $global:ZscalerEnvironment.cloud)
 
@@ -9,6 +35,32 @@ function Get-ZscalerSSLExemptedUrl
 
 function Set-ZscalerSSLExemptedUrl
 {
+    <#
+    .SYNOPSIS
+    Adds or Removes URLs from the list of SSL (and other policy) exempted URLs
+    
+    .PARAMETER action
+    Action to perform on the incoming list. Either add URLs to remove URLs from the list. Must be either "add" or "remove"
+
+    .PARAMETER urls
+    List of URLs to add or remove from the list. Must either be an array or comma separated list of domains
+
+    .EXAMPLE
+    PS> Set-ZscalerSSLExemptedUrl -action add -urls engadget.com,zscaler.com
+
+    urls
+    ----
+    {engadget.com, zscaler.com}
+    
+
+    .EXAMPLE
+    PS> Set-ZscalerSSLExemptedUrl -action remove -urls engadget.com,zscaler.com
+
+    urls
+    ----
+    {engadget.com, zscaler.com}
+
+    #>
     param(
         [Parameter(Mandatory=$true)][string]$action,
         [Parameter(Mandatory=$true)][string[]]$urls

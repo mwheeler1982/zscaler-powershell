@@ -1,5 +1,74 @@
 Function Get-ZscalerUser
 {
+    <#
+    .SYNOPSIS
+    Gets user information from ZIA. If called with no parameters, will attempt to return the first 100 users configured.
+
+    .PARAMETER id
+    Gets the user with the specified User ID. User ID is an internal field and is not the username that is used for authentication.
+
+    .PARAMETER name
+    Searches for users with a case-insensitive partial string match of their name field. Can be combined with dept and group for a more refined search.
+
+    .PARAMETER dept
+    Searches for users with a case-insensitive partial string match of their department field. Can be combined with name and group for a more refined search.
+
+    .PARAMETER group
+    Searches for users with a case-insensitive partial string match of their groups. Can be combined with name and dept for a more refined search.
+
+    .PARAMETER page
+    By default, users are listed in "pages" of 100 users at a time. Use this option to request a subsequent page.
+
+    .PARAMETER pageSize
+    Override the default page size of 100. This is the maximum number of records that will be returned with any search operation.
+
+    .EXAMPLE
+    PS> Get-ZscalerUser
+    id         : 11172660
+    name       : DEFAULT ADMIN
+    email      : admin@11172657.zscalerthree.net
+    groups     : {@{id=11172658; name=Service Admin}}
+    department : @{id=11172659; name=Service Admin}
+    adminUser  : True
+
+    id         : 11221784
+    name       : Michael J. Wheeler
+    email      : mwheeler@mwheeler.net
+    groups     : {@{id=11221783; name=Splunk_Users}}
+    department : @{id=11211611; name=IT}
+    adminUser  : False
+
+    .EXAMPLE
+    PS> Get-ZscalerUser -id 11221784 |format-table
+
+    id          name               email                 groups                              department              adminUser
+    --          ----               -----                 ------                              ----------              ---------
+    11221784    Michael J. Wheeler mwheeler@mwheeler.net {@{id=11221783; name=Splunk_Users}} @{id=11211611; name=IT}     False
+
+    .EXAMPLE
+    PS> Get-ZscalerUser -name wheel -group Splunk
+
+    id         : 11221784
+    name       : Michael J. Wheeler
+    email      : mwheeler@mwheeler.net
+    groups     : {@{id=11221783; name=Splunk_Users}}
+    department : @{id=11211611; name=IT}
+    adminUser  : False
+
+    .EXAMPLE
+    PS> Get-ZscalerUser -group spl -page 1 -pagesize 1000
+
+
+    id         : 11221784
+    name       : Michael J. Wheeler
+    email      : mwheeler@mwheeler.net
+    groups     : {@{id=11221783; name=Splunk_Users}}
+    department : @{id=11211611; name=IT}
+    adminUser  : False
+
+    
+    #>
+    
     # parameters
     param(
         [Parameter(Mandatory=$false)][string]$id,

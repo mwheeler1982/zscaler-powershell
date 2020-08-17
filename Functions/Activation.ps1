@@ -1,5 +1,24 @@
 function Get-ZscalerActivationStatus
 {
+    <#
+    .SYNOPSIS
+
+    Determine if there are pending changes to be activated
+
+    .EXAMPLE
+
+    PS> Get-ZscalerActivationStatus
+    status
+    ------
+    ACTIVE
+
+    .EXAMPLE
+
+    PS> Get-ZscalerActivationStatus
+    status
+    ------
+    PENDING
+    #>
     $parameters = [ordered]@{}
     
      # set the URI
@@ -10,6 +29,18 @@ function Get-ZscalerActivationStatus
 
 function Set-ZscalerActivateChanges
 {
+    <#
+    .SYNOPSIS
+
+    Activate pending changes within the Zscaler management console
+
+    .EXAMPLE
+
+    PS> Set-ZscalerActivateChanges
+    status
+    ------
+    ACTIVE
+    #>
     $parameters = [ordered]@{}
 
     # set the URI

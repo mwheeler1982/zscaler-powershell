@@ -1,5 +1,38 @@
 function Get-ZscalerDepartment
 {
+    <#
+    .SYNOPSIS
+    Gets information about Departments configured within ZIA
+
+    .PARAMETER id
+    Retrieve a department by its department ID
+
+    .PARAMETER search
+    Search within the "name" and "comments" attributes for the search term. This is a case-insensitive partial string match search.
+
+    .EXAMPLE 
+    PS> Get-ZscalerDepartment
+    
+    id          name               comments
+    --          ----               --------
+    11211611    IT                 IT
+    11172659    Service Admin
+
+    .EXAMPLE
+    PS> Get-ZscalerDepartment -id 11211611
+    
+    id          name    comments
+    --          ----    --------
+    11211611    IT      IT
+
+    .EXAMPLE
+    PS> Get-ZscalerDepartment -search Admin
+
+    isNonEditable       id          name
+    -------------       --          ----
+    True           11172659    Service Admin
+    #>
+    
     # parameters
     param(
         [Parameter(Mandatory=$false)][string]$id,
