@@ -297,6 +297,9 @@ function Update-ZscalerUrlCategory
     .PARAMETER urls
     Comma separated list or array of URLs to add/remove from the list
 
+    .PARAMETER dbCategorizedUrls
+    Comma separated list or array of URLs to add/remove from the "Retain Parent Category" section.
+
     .EXAMPLE
     PS> Update-ZscalerUrlCategory -id CUSTOM_01 -action add -configuredName "Test Category" -urls gambling.com,badstuff.com
 
@@ -334,8 +337,15 @@ function Update-ZscalerUrlCategory
         [Parameter(Mandatory=$true)][string]$id,
         [Parameter(Mandatory=$true)][string]$action,
         [Parameter(Mandatory=$true)][string]$configuredName,
-        [Parameter(Mandatory=$true)][string[]]$urls
+        [Parameter(Mandatory=$false)][string[]]$urls,
+        [Parameter(Mandatory=$false)][string[]]$dbCategorizedUrls
     )
+
+    # make sure they specified either URLs or DB Categorized URLs
+    if (!$urls -and !$dbCategorizedUrls)
+    {
+        Throw "Must specify either -urls or -dbCategorizedUrls"
+    }
 
     # construct the URI
     $uri = ("https://admin.{0}.net/api/v1/urlCategories" -f $global:ZscalerEnvironment.cloud)
@@ -343,6 +353,7 @@ function Update-ZscalerUrlCategory
     # construct the URL parameter array
     $parameters = @{}
     $parameters.Add("urls", $urls)
+    $parameters.Add("dbCategorizedUrls", $dbCategorizedUrls)
     $parameters.Add("id", $id)
     $parameters.Add("configuredName", $configuredName)
 

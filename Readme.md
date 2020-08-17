@@ -534,7 +534,7 @@ Set-ZscalerWhitelistUrl [[-force] <bool>] [[-urls] <string[]>] [<CommonParameter
 ## Update-ZscalerUrlCategory
 ### Syntax
 ```powershell
-Update-ZscalerUrlCategory [-id] <string> [-action] <string> [-configuredName] <string> [-urls] <string[]> [<CommonParameters>]
+Update-ZscalerUrlCategory [-id] <string> [-action] <string> [-configuredName] <string> [-urls] <string[] [-dbConfiguredUrls] <string[]> [<CommonParameters>]
 ```
 ### Parameters
 | Name  | Alias  | Description | Required? | Pipeline Input | Default Value |
@@ -542,4 +542,5 @@ Update-ZscalerUrlCategory [-id] <string> [-action] <string> [-configuredName] <s
 | <nobr>action</nobr> | None |  | true | false |  |
 | <nobr>configuredName</nobr> | None |  | true | false |  |
 | <nobr>id</nobr> | None |  | true | false |  |
-| <nobr>urls</nobr> | None |  | true | false |  |
+| <nobr>urls</nobr> | None |  | false | false |  |
+| <nobr>dbConfiguredUrls</nobr> | None |  | false | false |  |
