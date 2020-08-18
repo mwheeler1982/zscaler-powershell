@@ -66,16 +66,16 @@ Description = 'Interact with the Zscaler API through powershell'
 # FormatsToProcess = @()
 
 # Modules to import as nested modules of the module specified in RootModule/ModuleToProcess
-NestedModules = @('/Users/mwheeler/Zscaler/Functions/Activation.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Authentication.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Departments.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Groups.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Locations.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Security.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/SSL.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/TrafficForwarding.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/URLs.ps1', 
-               '/Users/mwheeler/Zscaler/Functions/Users.ps1')
+NestedModules = @('./Functions/Activation.ps1', 
+               './Functions/Authentication.ps1', 
+               './Functions/Departments.ps1', 
+               './Functions/Groups.ps1', 
+               './Functions/Locations.ps1', 
+               './Functions/Security.ps1', 
+               './Functions/SSL.ps1', 
+               './Functions/TrafficForwarding.ps1', 
+               './Functions/URLs.ps1', 
+               './Functions/Users.ps1')
 
 # Functions to export from this module, for best performance, do not use wildcards and do not delete the entry, use an empty array if there are no functions to export.
 FunctionsToExport = '*'
