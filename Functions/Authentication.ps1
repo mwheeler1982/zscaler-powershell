@@ -112,8 +112,21 @@ function Get-ZscalerEnvironmentFromFile
 
     #>
     param(
-        [Parameter(Mandatory=$true)][string]$FileName
+        [Parameter(Mandatory=$false)][string]$FileName
     )
+
+    # try to read from the default location of $HOME/.Zscaler/config if no FileName was specified. If this file does not exist, throw an error
+    if (!$FileName)
+    {
+        if (Test-Path -Path $HOME/.Zscaler/config)
+        {
+            # config file exists
+            $FileName = "$HOME/.Zscaler/config"
+        } else {
+            # conf file does not exist. Since they didn't specify a file and there's no default config, throw an error
+            Throw "Must specify -FileName or have a config file at $HOME/.Zscaler/config"
+        }
+    }
 
     # read in the configuration file
     $environment = ConvertFrom-StringData -StringData (Get-Content -path $FileName -Raw)
