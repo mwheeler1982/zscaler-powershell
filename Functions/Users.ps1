@@ -100,3 +100,22 @@ Function Get-ZscalerUser
     # return the result
     return Invoke-RestMethod -uri $request.Uri -Method Get -WebSession $global:ZscalerEnvironment.webession -Body $parameters -ContentType 'application/json'
 }
+
+Function Remove-ZscalerUsersBulk {
+    
+    # parameters
+    param(
+        [Parameter(Mandatory=$true)][string[]]$ids
+    )
+
+    # build the parameter list
+    $parameters = [ordered]@{}
+    $parameters.Add("ids", $ids)
+
+    # set the URI
+    $request = [System.UriBuilder]("https://admin.{0}.net/api/v1/users/bulkDelete" -f $global:ZscalerEnvironment.cloud)
+
+    # send the request
+    return Invoke-RestMethod -uri $request.Uri -Method Post -WebSession $global:ZscalerEnvironment.webession -Body (ConvertTo-Json $parameters) -ContentType 'application/json'
+
+}
